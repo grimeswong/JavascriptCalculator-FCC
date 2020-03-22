@@ -1,10 +1,13 @@
 .App {
+  height: 100vh;
   text-align: center;
   color: black;
   background-color: white;
-
+  h1 {
+    padding-top: 2rem;
+  }
   .container {
-    margin-top: 20rem;
+    margin-top: 15rem;
     .row {
       margin: auto;
       width: 320px;
@@ -16,10 +19,28 @@
         padding-right: 1rem;
         border: solid 2px black;
         text-align: right;
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
       }
-      .btn {
-        min-width: 80px;
-        min-height: 80px;
+
+      .btn-group {
+        display: grid;
+        grid-template-columns: 80px 80px 80px 80px;
+        grid-template-rows: 80px 80px 80px 80px 80px;
+        .btn {
+          margin: 0;
+          border: solid 1px black;
+        }
+        #clear{
+          grid-area: 1 / span 2;
+        }
+        #equals {
+          grid-area: 4 / 4 / span 2 / span 1;
+        }
+        #zero{
+          grid-area: 5 / span 2;
+        }
       }
     }
   }
