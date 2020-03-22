@@ -10,43 +10,43 @@ function App() {
           <div id="display">Display</div>
         </div>
         <div className="row">
-          <div class="btn-group">
-            <button type="button" class="btn btn-secondary">AC</button>
-            <button type="button" class="btn btn-secondary">AC</button>
-            <button type="button" class="btn btn-secondary">÷</button>
-            <button type="button" class="btn btn-secondary"><span>*</span></button>
+          <div className="btn-group">
+            <button type="button" className="btn btn-danger" id="clear">AC</button>
+            <button type="button" className="btn btn-danger" id="clear">AC</button>
+            <button type="button" className="btn btn-secondary" id="divide">÷</button>
+            <button type="button" className="btn btn-secondary" id="multiply"><span>*</span></button>
           </div>
         </div>
         <div className="row">
-          <div class="btn-group">
-            <button type="button" class="btn btn-secondary">7</button>
-            <button type="button" class="btn btn-secondary">8</button>
-            <button type="button" class="btn btn-secondary">9</button>
-            <button type="button" class="btn btn-secondary">-</button>
+          <div className="btn-group">
+            <button type="button" className="btn btn-dark" id="seven">7</button>
+            <button type="button" className="btn btn-dark" id="eigth">8</button>
+            <button type="button" className="btn btn-dark" id="ninie">9</button>
+            <button type="button" className="btn btn-secondary" id="subtract">-</button>
           </div>
         </div>
         <div className="row">
-          <div class="btn-group">
-            <button type="button" class="btn btn-secondary">4</button>
-            <button type="button" class="btn btn-secondary">5</button>
-            <button type="button" class="btn btn-secondary">6</button>
-            <button type="button" class="btn btn-secondary">+</button>
+          <div className="btn-group">
+            <button type="button" className="btn btn-dark" id="four">4</button>
+            <button type="button" className="btn btn-dark" id="five">5</button>
+            <button type="button" className="btn btn-dark" id="six">6</button>
+            <button type="button" className="btn btn-secondary" id="add">+</button>
           </div>
         </div>
         <div className="row">
-          <div class="btn-group">
-            <button type="button" class="btn btn-secondary">1</button>
-            <button type="button" class="btn btn-secondary">2</button>
-            <button type="button" class="btn btn-secondary">3</button>
-            <button type="button" class="btn btn-secondary">=</button>
+          <div className="btn-group">
+            <button type="button" className="btn btn-dark" id="one">1</button>
+            <button type="button" className="btn btn-dark" id="two">2</button>
+            <button type="button" className="btn btn-dark" id="three">3</button>
+            <button type="button" className="btn btn-primary" id="equals">=</button>
           </div>
         </div>
         <div className="row">
-          <div class="btn-group">
-            <button type="button" class="btn btn-secondary">0</button>
-            <button type="button" class="btn btn-secondary">0</button>
-            <button type="button" class="btn btn-secondary">.</button>
-            <button type="button" class="btn btn-secondary">=</button>
+          <div className="btn-group">
+            <button type="button" className="btn btn-dark" id="zero">0</button>
+            <button type="button" className="btn btn-dark" id="zero">0</button>
+            <button type="button" className="btn btn-dark" id="decimal">.</button>
+            <button type="button" className="btn btn-primary" id="equals">=</button>
           </div>
         </div>
 

@@ -6,7 +6,21 @@
   .container {
     margin-top: 20rem;
     .row {
+      margin: auto;
+      width: 320px;
       justify-content: center;
+
+      #display {
+        width: 100%;
+        height: 5rem;
+        padding-right: 1rem;
+        border: solid 2px black;
+        text-align: right;
+      }
+      .btn {
+        min-width: 80px;
+        min-height: 80px;
+      }
     }
   }
 
