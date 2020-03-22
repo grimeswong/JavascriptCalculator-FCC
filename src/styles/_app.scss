@@ -2,4 +2,16 @@
   text-align: center;
   color: black;
   background-color: white;
+
+  .container {
+    margin-top: 20rem;
+    .row {
+      justify-content: center;
+    }
+  }
+
+}
+
+.btn span{
+    vertical-align: sub;
 }
