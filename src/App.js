@@ -13,7 +13,6 @@ class App extends React.Component {
     }
     this.num = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."];
     this.oper = ["*", "/", "+", "-"];
-    this.equals = ["="];
   }
 
   componentDidMount() {
@@ -25,7 +24,7 @@ class App extends React.Component {
     console.log(e.target.value);
     if(e.target.value === "AC") {
       this.clear()
-    } else if (this.num.includes(e.target.value) && this.state.input.length < 12) { // limit to 12 digits
+    } else if (this.num.includes(e.target.value)) {
       if(this.state.input.length === 1 && this.state.input[this.state.input.length-1] === "0" && e.target.value !== ".") {  // if the string leading by "0",
         // remove leading 0
         console.log('remove leading zero');
@@ -36,15 +35,18 @@ class App extends React.Component {
         this.setState({input: this.state.input.concat(e.target.value)});
       }
 
+    } else if (this.oper.includes(e.target.value)) { // if operator is clicked
+      console.log("operator is clicked")
 
-    } else {
+    } else {  // other siutation
 
     }
 
   }
 
-  calulate = () => {
-
+  calculate = () => {
+    console.log("Equals is clicked")
+    console.log("Calculator the formula")
   }
 
   clear() {
@@ -60,7 +62,7 @@ class App extends React.Component {
         <div className="container">
           <div className="row">
             <div id="display">
-              <p>{this.state.input}</p>
+              {this.state.input}
             </div>
           </div>
           <div className="row">
@@ -79,7 +81,7 @@ class App extends React.Component {
               <button type="button" className="btn btn-dark" id="one" value="1" onClick={(e)=>this.analyse(e)}>1</button>
               <button type="button" className="btn btn-dark" id="two" value="2" onClick={(e)=>this.analyse(e)}>2</button>
               <button type="button" className="btn btn-dark" id="three" value="3" onClick={(e)=>this.analyse(e)}>3</button>
-              <button type="button" className="btn btn-primary" id="equals" value="=" onClick={(e)=>this.calulate}>=</button>
+              <button type="button" className="btn btn-primary" id="equals" value="=" onClick={(e)=>this.calculate(e)}>=</button>
               <button type="button" className="btn btn-dark" id="zero" value="0" onClick={(e)=>this.analyse(e)}>0</button>
               <button type="button" className="btn btn-dark" id="decimal" value="." onClick={(e)=>this.analyse(e)}>.</button>
             </div>
