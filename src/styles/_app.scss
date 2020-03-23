@@ -22,6 +22,10 @@
         display: flex;
         justify-content: flex-end;
         align-items: flex-end;
+        overflow: hidden;
+        p {
+          width: 100%;
+        }
       }
 
       .btn-group {
