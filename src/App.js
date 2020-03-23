@@ -37,6 +37,14 @@ class App extends React.Component {
 
     } else if (this.oper.includes(e.target.value)) { // if operator is clicked
       console.log("operator is clicked")
+      if(this.oper.includes(e.target.value)) {
+        console.log('add operator')
+        if(this.oper.includes(this.state.input[this.state.input.length-1]) && this.oper.includes(this.state.input[this.state.input.length-2])) { // limit to two operators
+          // do nothing that more than 2 operators
+        } else {
+          this.setState({input: this.state.input.concat(e.target.value)});
+        }
+      }
 
     } else {  // other siutation
 
