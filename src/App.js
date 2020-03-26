@@ -8,15 +8,13 @@ class App extends React.Component {
     super(props);
     this.state = {
       input: "0",
-      decimal: false
+      decimal: false,
+      negative: false
     }
     this.num = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."];
     this.oper = ["*", "/", "+", "-"];
   }
 
-  componentDidMount() {
-
-  }
 
   // This function for analyse the input of typing
   analyse = (e) => {
@@ -28,7 +26,7 @@ class App extends React.Component {
     } else if (this.num.includes(curVal)) {
       if(state.length === 1 && state[state.length-1] === "0" && curVal !== ".") {  // if the string leading by "0",
         // remove leading 0
-        console.log('remove leading zero');
+        // console.log('remove leading zero');
         this.setState({input: "".concat(curVal)});
       } else if(curVal === ".") { // will not concate decimal sign
         if(this.state.decimal===false) {
@@ -38,27 +36,35 @@ class App extends React.Component {
           })
         }
       } else {
-        console.log('concate string')
+        // console.log('concate string')
         this.setState({input: state.concat(curVal)});
       }
 
     } else if (this.oper.includes(curVal)) { // if operator is clicked
-      console.log("operator is clicked")
+      // console.log("operator is clicked")
       this.setState({decimal: false}) // reset decimal flag
-      if(this.num.includes(state[state.length-1])) {  // add an operator after a number
+      if(this.num.includes(state[state.length-1])) {  // add an operator after a number only
         console.log('add operator after numbers')
         this.setState({input: state.concat(curVal)});
+
+      } else if (this.oper.includes(state[state.length-1])) { // update operator
+        if(curVal !== "-" && this.state.negative !== true) {    //
+          this.setState({input: state.substring(0, state.length-1).concat(curVal)});
+        } else if (curVal !== "-" && this.state.negative === true) {
+          this.setState({
+            input: state.substring(0, state.length-2).concat(curVal), // remove all operator and update to the new one
+            negative: false
+          })
+        } else {  // if minus is entered
+          if(state[state.length-1] ==="*" || state[state.length-1] ==="/" || state[state.length-1] ==="+") {
+            this.setState({
+              input: state.concat(curVal),
+              negative: true
+            });
+          }
+        }
       }
 
-      if(this.oper.includes(state[state.length-1]) && curVal !== "-" && this.oper.includes(state[state.length-2]) !== true ) { // replace the old operator by the current one except minus sign
-        console.log('update operator after numbers')
-        this.setState({input: state.substring(0, state.length-1).concat(curVal)});
-      }
-
-      if(curVal === "-" && state[state.length-1] !== "-" ) {  // add negative sign after an operator except minus
-        console.log('add minus sign')
-        this.setState({input: state.concat(curVal)});
-      }
 
     } else {  // clicked other button or other situation
 
@@ -77,7 +83,8 @@ class App extends React.Component {
   clear() {
     this.setState({
       input: "0",
-      decimal: false
+      decimal: false,
+      negative: false,
     })
   }
 
