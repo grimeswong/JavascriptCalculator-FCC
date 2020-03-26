@@ -10,7 +10,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       input: "0",
-      lastResult: "0"
+      result: "0"
     }
     this.num = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."];
     this.oper = ["*", "/", "+", "-"];
@@ -30,10 +30,10 @@ class App extends React.Component {
     } else if (this.num.includes(curVal)) {
       if(state.length === 1 && state[state.length-1] === "0" && curVal !== ".") {  // if the string leading by "0",
         // remove leading 0
-        // console.log('remove leading zero');
+        console.log('remove leading zero');
         this.setState({input: "".concat(curVal)});
       } else {
-        // console.log('concate string')
+        console.log('concate string')
         this.setState({input: state.concat(curVal)});
       }
 
@@ -64,12 +64,9 @@ class App extends React.Component {
   calculate = () => {
     console.log("Equals is clicked")
     console.log("Calculator the formula")
-    console.log(`Original formula = ${this.state.input}`);
-    // 1.) find the operators and replace it to correct format
-    // 2.) find the multiply and divide operator
-    // 3.) calculate the multiply and divide with adjacent numbers
-    // 4.) calculate the add and minus with adjacent numbers
-    // last.) save to the state and display the final result
+    this.setState({
+      input: eval(this.state.input).toString()
+    })
   }
 
   clear() {
