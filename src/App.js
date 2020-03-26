@@ -9,7 +9,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      input: "0"
+      input: "0",
+      lastResult: "0"
     }
     this.num = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."];
     this.oper = ["*", "/", "+", "-"];
@@ -22,31 +23,39 @@ class App extends React.Component {
   // This function for analyse the input of typing
   analyse = (e) => {
     console.log(e.target.value);
-    if(e.target.value === "AC") {
+    const state = this.state.input;
+    const curVal = e.target.value;
+    if(curVal === "AC") {
       this.clear()
-    } else if (this.num.includes(e.target.value)) {
-      if(this.state.input.length === 1 && this.state.input[this.state.input.length-1] === "0" && e.target.value !== ".") {  // if the string leading by "0",
+    } else if (this.num.includes(curVal)) {
+      if(state.length === 1 && state[state.length-1] === "0" && curVal !== ".") {  // if the string leading by "0",
         // remove leading 0
-        console.log('remove leading zero');
-        this.setState({input: "".concat(e.target.value)});
-        console.log(this.state.input);
+        // console.log('remove leading zero');
+        this.setState({input: "".concat(curVal)});
       } else {
-        console.log('concate string')
-        this.setState({input: this.state.input.concat(e.target.value)});
+        // console.log('concate string')
+        this.setState({input: state.concat(curVal)});
       }
 
-    } else if (this.oper.includes(e.target.value)) { // if operator is clicked
+    } else if (this.oper.includes(curVal)) { // if operator is clicked
       console.log("operator is clicked")
-      if(this.oper.includes(e.target.value)) {
-        console.log('add operator')
-        if(this.oper.includes(this.state.input[this.state.input.length-1]) && this.oper.includes(this.state.input[this.state.input.length-2])) { // limit to two operators
-          // do nothing that more than 2 operators
-        } else {
-          this.setState({input: this.state.input.concat(e.target.value)});
-        }
+
+      if(this.num.includes(state[state.length-1])) {  // add an operator after a number
+        console.log('add operator after numbers')
+        this.setState({input: state.concat(curVal)});
       }
 
-    } else {  // other siutation
+      if(this.oper.includes(state[state.length-1]) && curVal !== "-" && this.oper.includes(state[state.length-2]) !== true ) { // replace the old operator by the current one except minus sign
+        console.log('update operator after numbers')
+        this.setState({input: state.substring(0, state.length-1).concat(curVal)});
+      }
+
+      if(curVal === "-" && state[state.length-1] !== "-" ) {  // add negative sign after an operator except minus
+        console.log('add minus sign')
+        this.setState({input: state.concat(curVal)});
+      }
+
+    } else {  // clicked other button or other situation
 
     }
 
@@ -55,6 +64,12 @@ class App extends React.Component {
   calculate = () => {
     console.log("Equals is clicked")
     console.log("Calculator the formula")
+    console.log(`Original formula = ${this.state.input}`);
+    // 1.) find the operators and replace it to correct format
+    // 2.) find the multiply and divide operator
+    // 3.) calculate the multiply and divide with adjacent numbers
+    // 4.) calculate the add and minus with adjacent numbers
+    // last.) save to the state and display the final result
   }
 
   clear() {
@@ -77,7 +92,7 @@ class App extends React.Component {
             <div className="btn-group">
               <button type="button" className="btn btn-danger" id="clear" value="AC" onClick={(e)=>this.analyse(e)}>AC</button>
               <button type="button" className="btn btn-secondary" id="divide" value="/" onClick={(e)=>this.analyse(e)}>÷</button>
-              <button type="button" className="btn btn-secondary" id="multiply" value="*" onClick={(e)=>this.analyse(e)}><span>*</span></button>
+              <button type="button" className="btn btn-secondary" id="multiply" value="*" onClick={(e)=>this.analyse(e)}><span>x</span></button>
               <button type="button" className="btn btn-dark" id="seven" value="7" onClick={(e)=>this.analyse(e)}>7</button>
               <button type="button" className="btn btn-dark" id="eigth" value="8" onClick={(e)=>this.analyse(e)}>8</button>
               <button type="button" className="btn btn-dark" id="ninie" value="9" onClick={(e)=>this.analyse(e)}>9</button>
