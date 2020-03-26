@@ -91,8 +91,8 @@ class App extends React.Component {
               <button type="button" className="btn btn-secondary" id="divide" value="/" onClick={(e)=>this.analyse(e)}>÷</button>
               <button type="button" className="btn btn-secondary" id="multiply" value="*" onClick={(e)=>this.analyse(e)}><span>x</span></button>
               <button type="button" className="btn btn-dark" id="seven" value="7" onClick={(e)=>this.analyse(e)}>7</button>
-              <button type="button" className="btn btn-dark" id="eigth" value="8" onClick={(e)=>this.analyse(e)}>8</button>
-              <button type="button" className="btn btn-dark" id="ninie" value="9" onClick={(e)=>this.analyse(e)}>9</button>
+              <button type="button" className="btn btn-dark" id="eight" value="8" onClick={(e)=>this.analyse(e)}>8</button>
+              <button type="button" className="btn btn-dark" id="nine" value="9" onClick={(e)=>this.analyse(e)}>9</button>
               <button type="button" className="btn btn-secondary" id="subtract" value="-" onClick={(e)=>this.analyse(e)}>-</button>
               <button type="button" className="btn btn-dark" id="four" value="4" onClick={(e)=>this.analyse(e)}>4</button>
               <button type="button" className="btn btn-dark" id="five" value="5" onClick={(e)=>this.analyse(e)}>5</button>
