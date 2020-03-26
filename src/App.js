@@ -1,8 +1,6 @@
 import React from 'react';
 import './styles/main.scss';
 
-
-
 class App extends React.Component {
 
 
@@ -10,7 +8,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       input: "0",
-      result: "0"
+      decimal: false
     }
     this.num = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."];
     this.oper = ["*", "/", "+", "-"];
@@ -32,6 +30,13 @@ class App extends React.Component {
         // remove leading 0
         console.log('remove leading zero');
         this.setState({input: "".concat(curVal)});
+      } else if(curVal === ".") { // will not concate decimal sign
+        if(this.state.decimal===false) {
+          this.setState({
+            input: state.concat(curVal),
+            decimal: true
+          })
+        }
       } else {
         console.log('concate string')
         this.setState({input: state.concat(curVal)});
@@ -39,7 +44,7 @@ class App extends React.Component {
 
     } else if (this.oper.includes(curVal)) { // if operator is clicked
       console.log("operator is clicked")
-
+      this.setState({decimal: false}) // reset decimal flag
       if(this.num.includes(state[state.length-1])) {  // add an operator after a number
         console.log('add operator after numbers')
         this.setState({input: state.concat(curVal)});
@@ -71,7 +76,8 @@ class App extends React.Component {
 
   clear() {
     this.setState({
-      input: "0"
+      input: "0",
+      decimal: false
     })
   }
 
